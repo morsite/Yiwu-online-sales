@@ -1,0 +1,78 @@
+.navbar,.navbar-default{
+	background-color: #CC6666;
+	color: aliceblue ;
+}
+.active{
+	color: #fffff6;
+	list-style: none;
+}
+a {
+	background-color: transparent !important;
+	color:white !important;
+}
+.navbar-brand{
+	color: #755252 !important;
+	font-size: 25px;
+}
+.tj{
+	width: 60%;
+	float: right;
+	margin-right: 75px;
+}
+.jumbotron{
+	border: #283636 solid 1px;
+	background-color: #FFFFCC;
+}
+.jumbotron>h1{
+	font-size: 45px;
+	color: #303030;
+	text-align: center;
+}
+.jumbotron>p{
+	font-size: 25px;
+	color: #828282;
+	text-align: center;
+}
+.jumbotron p a{
+	font-size: 15px;
+	color: #282e2e;
+	background-color: #ffc0c0 !important;
+	text-align: center;
+}
+.left{
+	padding-top: 20px;
+	float: left;
+	width: 25%;
+	height: 500px;
+	background-color: #CCCCCC !important;
+	margin-left: 75px;
+}
+.rightjum2{
+	height: 180px;
+	border: #283636 solid 1px;
+	background-color: #fffff7 !important;
+	float: right;
+	margin-top: 8px;
+	margin-right: 75px;
+	width: 758px;
+	 display: flex;
+}
+.imga a img{
+	width: 120px;
+}
+
+.thua p{
+	color: black;
+}
+.tj-2{
+	width: 100%;
+	display: flex;
+	 flex-direction: row;
+	 flex-wrap:  wrap-reverse;
+	 justify-content:space-around;
+}
+.lef p a{
+	font-size: 15px;
+	color: #336699 !important;
+	background-color: #cccccc !important;
+}
