@@ -1,0 +1,24 @@
+.navbar,.navbar-default{
+	background-color: #CC6666;
+	color: aliceblue ;
+}
+.active{
+	color: #fffff6;
+	list-style: none;
+}
+a {
+	background-color: transparent !important;
+	color:white !important;
+}
+.navbar-brand{
+	color: #755252 !important;
+	font-size: 25px;
+}
+.photo{
+	margin-left: 50px;
+	width: 10px;
+	height: 150px;
+}
+.photo img{
+	border: #755252 solid 1px;
+}

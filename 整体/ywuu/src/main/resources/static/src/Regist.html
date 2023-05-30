@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regist</title>
+    <link rel="stylesheet" href="../css/regist.css">
+    <script src="../js/jquery-3.6.0.js"></script>
+</head>
+<body>
+<div class="r1">
+<div class="container">
+    <div class="content">
+        <div class="header">欢迎注册</div>
+        <form class="content__form">
+            <div class="content__inputs">
+                <label>
+                    <input required="" type="text" id="id">
+                    <span>请输入注册id</span>
+                </label>
+                <label>
+                    <input required="" type="text" id="acc">
+                    <span>请输入注册账号</span>
+                </label>
+                <label>
+                    <input required="" type="password" id="pw">
+                    <span>请输入注册密码</span>
+                </label>
+                <label>
+                    <input required="" type="text" id="name">
+                    <span>请输入昵称</span>
+                </label>
+            </div>
+            <button id="btu">注册</button>
+        </form>
+        <div class="content__or-text">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="content__forgot-buttons">
+            <button id="btu2">
+                <span>返回登录界面</span>
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $("#btu2").click(function (){
+        window.location.href="login.html"
+    })
+    $("#btu").click(function (event){
+        event.preventDefault();
+
+        var id =  $("#id").val()
+        var acc = $("#acc").val();
+        var pw = $("#pw").val();
+        var name = $("#name").val();
+        console.log(1)
+        $.ajax({
+
+            url:"../../user/regist",//请求的接口路径
+            data:JSON.stringify({
+                "uid":id,
+                "uaccount":acc,
+                "upassword":pw,
+                "uname":name
+            }),//请求的参数
+            type:"POST",//请求方式
+            contentType: "application/json;charset=UTF-8",//请求头
+            dataType:"json",//预计返回值的形式
+            success:function (res){
+
+                if(res.status==200){
+                    window.location.href = "./login.html"
+                }else{
+                    alert("密码错误")
+                }
+            },
+            error:function (){
+                alert("err")
+            }
+        })
+    })
+</script>
+</body>
+</html>
