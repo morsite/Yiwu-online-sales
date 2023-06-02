@@ -1,0 +1,36 @@
+.navbar,.navbar-default{
+    background-color: #CC6666;
+    color: aliceblue ;
+}
+.active{
+    color: #fffff6;
+    list-style: none;
+}
+a {
+    background-color: transparent !important;
+    color: #141414 !important;
+}
+.navbar-brand{
+    color: #755252 !important;
+    font-size: 25px;
+}
+.bb{
+    margin-left: 20px;
+    background-color: #CC6666;
+    width:100px;
+    height: 40px;
+    border-radius: 5px;
+    border: #ca9a9a solid 0.5px;
+    color: white;
+    margin-bottom: 20px;
+}
+.del{
+    margin-left: 20px;
+    background-color: #CC6666;
+    width:100px;
+    height: 40px;
+    border-radius: 5px;
+    border: #ca9a9a solid 0.5px;
+    color: white;
+}
+

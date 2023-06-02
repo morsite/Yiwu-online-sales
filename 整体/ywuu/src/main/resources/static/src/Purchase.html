@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/purchase.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">义乌华烨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">收藏 <span class="sr-only">(current)</span></a></li>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#">购物单</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">我的<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">关注</a></li>
+                        <li><a href="#">未收货</a></li>
+                        <li><a href="#">已签收</a></li>
+                        <li><a href="#">我的评价</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="搜索">
+                </div>
+                <button type="submit" class="btn btn-default">确认</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">运输</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">其他<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">字体</a></li>
+                        <li><a href="#">客服</a></li>
+                        <li><a href="#">关于</a></li>
+                        <li><a href="#">颜色</a></li>
+                    </ul>
+                </li>
+                <li><a href="./src/login.html">登录</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="middle">
+    <div class="mid-left">
+        <div class="row">
+            <div class="imga">
+                <img src="../img/1.JPG">
+            </div>
+            <div class="shop-bto">
+                <span class="shop-name">商铺名：</span>
+                <a href="#">
+                <span class="pur-shop">可达鸭饲养店</span></a><br/>
+            </div>
+        </div>
+    </div>
+    <div class="mid-right">
+        <div class="right-pur">
+            <div class="pro-bto">
+                <span class="pur-brand">商品名：</span>
+                <span class="pro">可达鸭</span><br/>&nbsp;&nbsp;
+                <span class="pro-js"> 一只黄色可达鸭正惊愕地看着喷水的小智</span>
+            </div>
+            <div class="right-pho">
+                <div class="pho1"><img src="../img/kdy1.jpg"/> </div>
+                <div class="pho2"><img src="../img/kdy2.jpg"/> </div>
+                <div class="pho3"><img src="../img/kdy3.jpg"/> </div>
+                <div class="pho4"><img src="../img/1.JPG"/> </div>
+            </div>
+            <div class="price">
+                <span class="price-word">价格:</span>
+                <span class="price-number">28.8</span>RMB<br/>
+                <span class="pro-rem">(库余<span class="pro-rem-num">10</span>件)</span><br/>
+                <span class="pro-word">
+                   货号/产品号: <span class="pro-id">18096</span><br/>
+                   起订量:<span class="pro-num-mid">2</span><br/>
+                   快递费:<span class="pro-cou">10</span>RMB<br/>
+                   款式1:
+                    <div class="input-group mb-3 wid">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">-</button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="0" value="2">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default pro-numb" type="button">+</button>
+                        </span>
+                     </div>
+                    款式2:
+                    <div class="input-group mb-3 wid">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">-</button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="0" value="2">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default pro-numb" type="button">+</button>
+                        </span>
+                     </div>
+                    款式3:
+                    <div class="input-group mb-3 wid">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">-</button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="0" value="2">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default pro-numb" type="button">+</button>
+                        </span>
+                     </div>
+                </span>
+                <span>服务保障：48小时发货，无运费险，不支持七天无理由退货</span>
+                <div class="prisum">
+                    <div class="priword">总价：
+                    <div class="pri-sum">28.0</div>RMB|
+                     <button class="confi1">确认付款</button>
+                     <button class="confi2">加购物单</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="aft">
+    <div class="media plt">
+        <div class="media-left media-middle">
+                <img class="media-object tx" src="../img/kdy1.jpg" alt="...">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">昵称</h4>
+            评论阿阿八八八八八八八
+        </div>
+    </div>
+    <div class="media plt">
+        <div class="media-left media-middle">
+            <img class="media-object tx" src="../img/kdy1.jpg" alt="...">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">昵称</h4>
+            评论阿阿八八八八八八八
+        </div>
+    </div>
+    <div class="media plt">
+        <div class="media-left media-middle">
+            <img class="media-object tx" src="../img/kdy1.jpg" alt="...">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">昵称</h4>
+            评论阿阿八八八八八八八
+        </div>
+    </div>
+    <div class="media plt">
+        <div class="media-left media-middle">
+            <img class="media-object tx" src="../img/kdy1.jpg" alt="...">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">昵称</h4>
+            评论阿阿八八八八八八八
+        </div>
+    </div>
+    <div class="media plt">
+        <div class="media-left media-middle">
+            <img class="media-object tx" src="../img/kdy1.jpg" alt="...">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">昵称</h4>
+            评论阿阿八八八八八八八
+        </div>
+    </div>
+</div>
+</body>
+</html>

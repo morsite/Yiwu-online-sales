@@ -15,12 +15,15 @@
 						async: true, //是否异步 默认值为true
 						url: "1.txt", //后端处理文件
 						type: "get", //请求方式
-					data: {
+						data: {
 							"name": "tom",
 							"age": 18
 						},  //向服务器发送数据
 						dataType: "json", //接受数据的形式 text 纯文本字符串json json对象
 						success: function(res) { //success 匿名回调函数 代表请求成功 得到响应数据
+							
+							// 字符串转对象：JSON.parse（字符串）
+							// 对象转字符串：JSON.stringify(对象)
 							console.log("res", res.name);
 						},
 						error: function(xhr, errMsg) { //error:匿名回调函数 代表请求失败 errMsg:错误信息

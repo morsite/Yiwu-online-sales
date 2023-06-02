@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+<!--    第一种方式：配置servlet web.xml中servlet-name servlet名字 保证serlvet 中s-name和s-mapping 中 s-name
+        servlet-class servlet中完整的类路径
+        url-pattern servlet映射地址 注意有斜线/映射地址名称
+        访问servlet：http://localhost:8081/JAVAEE_STUDY_war_exploded/MyServlet文件映射地址 get请求 doget（）处理
+-->
+    <servlet>
+        <servlet-name>MyServlet</servlet-name>
+        <servlet-class>com.icss.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyServlet</servlet-name>
+        <url-pattern>/MyServlet</url-pattern>
+    </servlet-mapping>
+</web-app>

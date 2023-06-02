@@ -6,9 +6,12 @@ import lombok.Data;
 public class Scom {
     int scomid;
     String scomname;
-    String sconintr;
+    String scomintr;
     String scompho;
-    String scomprice;
+    int scomprice;
     int scomnum;
-    int scomstate;
+    String scomstate;
+    int scommoq;
+    int freight;
+    int outbound;
 }

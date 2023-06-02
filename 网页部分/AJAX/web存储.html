@@ -21,6 +21,9 @@
 			let uname = document.getElementById("uname").value;
 			let pwd = document.getElementById("pwd").value;
 			if(uname == "tom"&&pwd == "123"){
+				// 数据存储sessionStorage
+				// sessionStorage.setItem(key,value) key value 要求是String类型
+				sessionStorage.setItem("uname",uname);
 				// 提交表单
 				document.getElementById("f").submit();
 				// 完成跳转

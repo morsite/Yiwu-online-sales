@@ -8,5 +8,4 @@ public class Suser {
     String saccount;
     String spassword;
     String sname;
-
 }
