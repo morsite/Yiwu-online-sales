@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.iwu.ywuu.entity.Scom;
 import com.iwu.ywuu.mapper.ScomMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ScomService {
     @Resource
     ScomMapper scomMapper;
+
 //返回一个list对象
     public List<Scom> getScom(){
         List<Scom> fronScom = scomMapper.getFronScom();

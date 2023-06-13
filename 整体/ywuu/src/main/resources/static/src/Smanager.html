@@ -111,7 +111,8 @@
                         <input type="text" class="form-control out2" placeholder="已出库" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control pho2" placeholder="上传图片" aria-describedby="basic-addon1">
+                        <input type="file" id="wj" class="form-control pho2" placeholder="上传图片" aria-describedby="basic-addon1"/>
+                        <input type="submit" value="确认上传" name="subUpload" class="phosc"/>
                     </div>
 
 
@@ -246,7 +247,25 @@
     $(function () {
         reflash()
     })
-
+    $(".phosc").click(function (){
+        //1.利用FormData内置对象
+        let obj = new FormData();
+        //3.添加文件对象,$('#d3')取索引0，转为原生jQuery对象即原生标签对象，再用files[0]就获得用户传的文件对象
+        obj.append("a","giao")
+        obj.append('file',$('#wj')[0].files[0])
+        //4.将对象基于ajax发送到后端
+        $.ajax({
+            url:'http://localhost:8080/updateImage',
+            type:'post',
+            data:obj, //直接将对象放在data中即可
+            // ajax 发送文件必须指定两个参数
+            contentType:false, //告诉浏览器不需要带任何编码，Django后端能够自动识别formdata对象，
+            processData: false, //告诉浏览器，不要对数据进行任何处理，原封不动发送到后端。
+            success:function (args){
+                console.log(args)
+            }
+        })
+    })
     $(".scombc").click(function (){
         var sid2=$(".sid2").val()
         var sname2=$(".sname2").val()
@@ -285,6 +304,7 @@
             }
         })
     })
+
     $(".scomxg").click(function (){
         var sid3=$(".sid3").val()
         var sname3=$(".sname3").val()
