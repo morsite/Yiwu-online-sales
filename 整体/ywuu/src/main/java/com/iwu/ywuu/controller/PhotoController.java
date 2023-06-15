@@ -14,10 +14,12 @@ public class PhotoController {
     public String uploadImg(MultipartFile file,String a,HttpServletRequest req) throws IOException {
 //        文件路径、文件名、返回值为访问路径
         System.out.println(a);
-        String name = file.getName();
+        String name = file.getOriginalFilename();
         String newname = UUID.randomUUID().toString()+name;
-        String filepath = "D:\\Project\\Yiwu-online-sales\\整体\\ywuu\\src\\main\\resources\\static\\uploadFile\\"+newname;
+        String filepath = "D:\\Project\\Yiwu-online-sales\\整体\\ywuu\\target\\classes\\static\\uploadFile\\"+newname;
+        String filepath2 = "D:\\Project\\Yiwu-online-sales\\整体\\ywuu\\src\\main\\resources\\static\\uploadFile\\"+newname;
         file.transferTo(new File(filepath));
+        //file.transferTo(new File(filepath2));
         String filePath1 = req.getScheme() + "://" + req.getServerName() + ":" +
                 req.getServerPort() + "/uploadFile/"+ newname;
         return filePath1 ;

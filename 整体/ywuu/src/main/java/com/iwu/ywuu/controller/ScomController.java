@@ -3,6 +3,7 @@ package com.iwu.ywuu.controller;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.iwu.ywuu.entity.Scom;
 import com.iwu.ywuu.service.ScomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class ScomController {
         JSONObject obj = JSONUtil.createObj();
         int sco = scomService.addOneScom(scom.getScomid(), scom.getScomname(), scom.getScomintr(), scom.getScompho(), scom.getScomprice(), scom.getScomnum(),
                 scom.getScomstate(), scom.getScommoq(), scom.getFreight(), scom.getOutbound());
+        System.out.println(scom.getScompho());
         if (sco > 0) {
             obj.set("status", "200");
             obj.set("data", sco);
@@ -80,11 +82,36 @@ public class ScomController {
             return obj;
         }
     }
-    @GetMapping("/test")
+    @GetMapping("/pager")
     public JSON getByPage(@RequestParam int a,@RequestParam int b){
+        /*a:第几页；b：每页有几个*/
         JSONObject obj = JSONUtil.createObj();
-        obj.set("data",scomService.selectByPage(a,b).getRecords());
-        return obj;
+        IPage<Scom> records= scomService.selectByPage(a, b);
+        int l = records.getRecords().size();
+        if (l > 0) {
+            obj.set("status", "200");
+            obj.set("data", records);
+            return obj;
+        } else {
+            obj.set("status", "400");
+            obj.set("data", records);
+            return obj;
+        }
+    }
+    @GetMapping("/selectid")
+    public JSON selectInfoById(@RequestParam("scomid") int id){
+        System.out.println(id);
+        JSONObject obj = JSONUtil.createObj();
+        Scom scom = scomService.selectByScomId(id);
+        if (scom!=null){
+            obj.set("status", "200");
+            obj.set("data", scom);
+            return obj;
+        } else {
+            obj.set("status", "400");
+            obj.set("data", scom);
+            return obj;
+        }
     }
 }
 

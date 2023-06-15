@@ -59,4 +59,7 @@ public class ScomService {
     public IPage<Scom> selectByPage(int currentPage,int lines){
         return scomMapper.selectPage(new Page(currentPage,lines),null);
     }
+    public Scom selectByScomId(int id){
+        return scomMapper.selectById(id);
+    }
 }

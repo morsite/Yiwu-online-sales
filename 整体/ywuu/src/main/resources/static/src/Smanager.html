@@ -34,7 +34,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">仓库 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="Smanager.html">仓库 <span class="sr-only">(current)</span></a></li>
                 <li><a href="index.html">首页</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -110,9 +110,13 @@
                     <div class="input-group">
                         <input type="text" class="form-control out2" placeholder="已出库" aria-describedby="basic-addon1">
                     </div>
+
                     <div class="input-group">
                         <input type="file" id="wj" class="form-control pho2" placeholder="上传图片" aria-describedby="basic-addon1"/>
                         <input type="submit" value="确认上传" name="subUpload" class="phosc"/>
+                    </div>
+                    <div class="input-group">
+                    图片路径：<span class="phoroad"></span>
                     </div>
 
 
@@ -138,6 +142,7 @@
 
                     <div class="input-group">
                         <input type="text" class="form-control sid3" placeholder="要修改的商品id" aria-describedby="basic-addon1">
+                        <input type="submit" value="查询信息" name="subUpload" class="phoxg"/>
                     </div>
                     <div class="input-group">
                         <input type="text" class="form-control sname3" placeholder="商品名" aria-describedby="basic-addon1">
@@ -164,7 +169,8 @@
                         <input type="text" class="form-control out3" placeholder="已出库" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control pho3" placeholder="上传图片" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control pho3" placeholder="上传图片" aria-describedby="basic-addon1" value="phopath">
+
                     </div>
 
                 </div>
@@ -195,25 +201,40 @@
             </tbody>
         </table>
     </div>
+    <div class="pagers">
+        <nav aria-label="Page navigation" align="center">
+
+            <ul class="pagination pagerul input-group" style="width: 20%;">
+                <li><span aria-hidden="true" class="lastpage">&laquo;</span></li>
+                <li>
+                    <input type="text" value="1" class="form-control forpage" style="width: 50px;">
+                </li>
+                <li><span class="gotopage">跳转</span></li>
+                <li><span aria-hidden="true" class="nextpage">&raquo;</span></li>
+            </ul>
+
+        </nav>
+    </div>
 </div>
 <script>
+
     function reflash() {
         $("#content1").empty();
 
         $.ajax({
-            url: "http://localhost:8080/scom/all",//请求的接口路径
+            url: "http://localhost:8080/scom/pager?a=1&b=4",//请求的接口路径
             type: "get",//请求方式
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
             success: function (res) {
                 if (res.status == "200") {
-                    for (one in res.data) {
+                    for (one in res.data.records) {
                         $("#content1").append(` <tr>\n' +
-                              '            <td class="col-md-2 sid">${res.data[one].scomid}</td>\n'+
-                            '            <td class="col-md-2 snamne">${res.data[one].scomname}</td>\n'+
-                            '            <td class="col-md-2 ssell">${res.data[one].outbound}</td>\n' +
-                            '            <td class="col-md-2 shave">${res.data[one].scomnum}</td>\n' +
-                            '            <td class="col-md-2 stake">${res.data[one].scomstate}</td>\n' +
+                              '            <td class="col-md-2 sid">${res.data.records[one].scomid}</td>\n'+
+                            '            <td class="col-md-2 snamne">${res.data.records[one].scomname}</td>\n'+
+                            '            <td class="col-md-2 ssell">${res.data.records[one].outbound}</td>\n' +
+                            '            <td class="col-md-2 shave">${res.data.records[one].scomnum}</td>\n' +
+                            '            <td class="col-md-2 stake">${res.data.records[one].scomstate}</td>\n' +
                             '            <td class="col-md-3 sdel"><button class="del" >删除</button></td>\n' +
                             '        </tr>`)
                     }
@@ -236,6 +257,7 @@
                             }
                         })
                     })
+
                 }
             },
             error: function () {
@@ -247,6 +269,7 @@
     $(function () {
         reflash()
     })
+
     $(".phosc").click(function (){
         //1.利用FormData内置对象
         let obj = new FormData();
@@ -262,15 +285,18 @@
             contentType:false, //告诉浏览器不需要带任何编码，Django后端能够自动识别formdata对象，
             processData: false, //告诉浏览器，不要对数据进行任何处理，原封不动发送到后端。
             success:function (args){
-                console.log(args)
+              $(".phoroad").text(args)
+            },error:function (){
+                alert("图片上传有误")
             }
         })
     })
     $(".scombc").click(function (){
+        var phoroad =$(".phoroad").text();
         var sid2=$(".sid2").val()
         var sname2=$(".sname2").val()
         var sintr2 = $(".sintr2").val()
-        var pho2 = $(".pho2").val()
+        var pho2 = phoroad/*$(".pho2").val()*/
         var out2 = $(".out2").val()
         var fre2 = $(".fre2").val()
         var smoq2 = $(".smoq2").val()
@@ -298,6 +324,32 @@
             success: function (res) {
                 reflash()
 
+            },
+            error: function () {
+                alert("err")
+            }
+        })
+    })
+    $(".phoxg").click(function (){
+        var id = $(".sid3").val()
+        $.ajax({
+            url: "http://localhost:8080/scom/selectid",//请求的接口路径
+            type: "get",//请求方式
+            contentType: "charset=UTF-8",
+            dataType: "json",
+            data: {
+                "scomid": id
+            },
+            success: function (res) {
+                $(".sname3").val(res.data.scomname)
+                $(".sintr3").val(res.data.scomintr)
+                $(".pho3").val(res.data.scompho)
+                $(".out3").val(res.data.outbound)
+                $(".fre3").val(res.data.freight)
+                $(".smoq3").val(res.data.scommoq)
+                $(".sstate3").val(res.data.scomstate)
+                $(".snum3").val(res.data.scomnum)
+                $(".spri3").val(res.data.scomprice)
             },
             error: function () {
                 alert("err")
@@ -342,6 +394,154 @@
         })
     })
 
+$(".gotopage").click(function (){
+    $("#content1").empty();
+    var page = $(".forpage").val()
+    $.ajax({
+        url: "http://localhost:8080/scom/pager?a="+page+"&b=4",//请求的接口路径
+        type: "get",//请求方式
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (res) {
+            if (res.status == "200") {
+                for (one in res.data.records) {
+                    $("#content1").append(` <tr>\n' +
+                              '            <td class="col-md-2 sid">${res.data.records[one].scomid}</td>\n'+
+                            '            <td class="col-md-2 snamne">${res.data.records[one].scomname}</td>\n'+
+                            '            <td class="col-md-2 ssell">${res.data.records[one].outbound}</td>\n' +
+                            '            <td class="col-md-2 shave">${res.data.records[one].scomnum}</td>\n' +
+                            '            <td class="col-md-2 stake">${res.data.records[one].scomstate}</td>\n' +
+                            '            <td class="col-md-3 sdel"><button class="del" >删除</button></td>\n' +
+                            '        </tr>`)
+                }
+                $(".del").click(function (){
+                    var rows = this.parentNode.parentNode.children[0].innerText
+                    console.log(rows)
+                    $.ajax({
+                        url: "http://localhost:8080/scom/delete",//请求的接口路径
+                        type: "post",//请求方式
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        data:JSON.stringify({
+                            "scomid":rows
+                        }),
+                        success: function (res) {
+                            reflash()
+                        },
+                        error: function () {
+                            alert("err")
+                        }
+                    })
+                })
+
+            }
+        },
+        error: function () {
+            alert("添加失败")
+        }
+    })
+})
+    $(".nextpage").click(function (){
+        $("#content1").empty();
+        var page = $(".forpage").val()
+        var p = parseInt(page)
+        p=p+1
+        $(".forpage").val(p)
+        $.ajax({
+            url: "http://localhost:8080/scom/pager?a="+$(".forpage").val() +"&b=4",//请求的接口路径
+            type: "get",//请求方式
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (res) {
+                if (res.status == "200") {
+                    for (one in res.data.records) {
+                        $("#content1").append(` <tr>\n' +
+                              '            <td class="col-md-2 sid">${res.data.records[one].scomid}</td>\n'+
+                            '            <td class="col-md-2 snamne">${res.data.records[one].scomname}</td>\n'+
+                            '            <td class="col-md-2 ssell">${res.data.records[one].outbound}</td>\n' +
+                            '            <td class="col-md-2 shave">${res.data.records[one].scomnum}</td>\n' +
+                            '            <td class="col-md-2 stake">${res.data.records[one].scomstate}</td>\n' +
+                            '            <td class="col-md-3 sdel"><button class="del" >删除</button></td>\n' +
+                            '        </tr>`)
+                    }
+                    $(".del").click(function (){
+                        var rows = this.parentNode.parentNode.children[0].innerText
+                        console.log(rows)
+                        $.ajax({
+                            url: "http://localhost:8080/scom/delete",//请求的接口路径
+                            type: "post",//请求方式
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: "json",
+                            data:JSON.stringify({
+                                "scomid":rows
+                            }),
+                            success: function (res) {
+                                reflash()
+                            },
+                            error: function () {
+                                alert("err")
+                            }
+                        })
+                    })
+
+                }
+            },
+            error: function () {
+                alert("添加失败")
+            }
+        })
+    })
+
+    $(".lastpage").click(function (){
+        $("#content1").empty();
+        var page = $(".forpage").val()
+        var p = parseInt(page)
+        p=p-1
+        $(".forpage").val(p)
+        $.ajax({
+            url: "http://localhost:8080/scom/pager?a="+$(".forpage").val() +"&b=4",//请求的接口路径
+            type: "get",//请求方式
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (res) {
+                if (res.status == "200") {
+                    for (one in res.data.records) {
+                        $("#content1").append(` <tr>\n' +
+                              '            <td class="col-md-2 sid">${res.data.records[one].scomid}</td>\n'+
+                            '            <td class="col-md-2 snamne">${res.data.records[one].scomname}</td>\n'+
+                            '            <td class="col-md-2 ssell">${res.data.records[one].outbound}</td>\n' +
+                            '            <td class="col-md-2 shave">${res.data.records[one].scomnum}</td>\n' +
+                            '            <td class="col-md-2 stake">${res.data.records[one].scomstate}</td>\n' +
+                            '            <td class="col-md-3 sdel"><button class="del" >删除</button></td>\n' +
+                            '        </tr>`)
+                    }
+                    $(".del").click(function (){
+                        var rows = this.parentNode.parentNode.children[0].innerText
+                        console.log(rows)
+                        $.ajax({
+                            url: "http://localhost:8080/scom/delete",//请求的接口路径
+                            type: "post",//请求方式
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: "json",
+                            data:JSON.stringify({
+                                "scomid":rows
+                            }),
+                            success: function (res) {
+                                reflash()
+                            },
+                            error: function () {
+                                alert("err")
+                            }
+                        })
+                    })
+
+                }
+            },
+            error: function () {
+                alert("添加失败")
+            }
+        })
+    })
 
 </script>
 </body>

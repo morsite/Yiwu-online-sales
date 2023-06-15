@@ -33,4 +33,13 @@ a {
     border: #ca9a9a solid 0.5px;
     color: white;
 }
-
+.forpage{
+    display: inline-block;
+}
+.pagers{
+    width: 100%;
+}
+.Page{
+    width: 200px;
+    margin: 0 auto;
+}

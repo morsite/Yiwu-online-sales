@@ -1,17 +1,19 @@
 package com.iwu.ywuu.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 @Data
 public class Scom {
-    int scomid;
+    @TableId
+    Integer scomid;
     String scomname;
     String scomintr;
     String scompho;
-    int scomprice;
-    int scomnum;
+    Integer scomprice;
+    Integer scomnum;
     String scomstate;
-    int scommoq;
-    int freight;
-    int outbound;
+    Integer scommoq;
+    Integer freight;
+    Integer outbound;
 }
